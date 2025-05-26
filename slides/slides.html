@@ -233,18 +233,206 @@ Dr Giulia Grisot
 
   <p class="date">May 28, 2025</p>
 </section>
-<section>
-<section id="todays-workshop---prerequisites" class="title-slide slide level1 center">
-<h1>Today’s workshop - prerequisites</h1>
+<section id="objectives" class="slide level2">
+<h2>Objectives</h2>
 <ul>
-<li>R and RStudio installed on your computer</li>
-<li>Interest in integrating code and narrative</li>
-<li>Willingness to explore reproducible workflows</li>
+<li>Understand what <strong>R</strong> and <strong>RStudio</strong> are</li>
+<li>Get familiar with the RStudio interface</li>
+<li>Try some basic R code</li>
+<li>Prepare to work with R Markdown</li>
+<li>Understand the <strong>benefits of using R Markdown</strong> for research and teaching</li>
+<li>Learn how to make the most of R Markdown by <strong>interacting with popular tools</strong> in the Humanities (e.g.&nbsp;Zotero)</li>
+<li>Learn how to produce <strong>dynamic, reproducible content</strong> with R Markdown</li>
+</ul>
+<blockquote>
+<p>it might seem like a steep learning curve, but it will save you <strong>a lot</strong> of time in the long run!</p>
+</blockquote>
+</section>
+<section id="step-1-installing-r-and-r-studio" class="slide level2">
+<h2>Step 1: Installing R and R Studio</h2>
+<ul>
+<li><strong>R</strong>: Download from <a href="https://cran.r-project.org/">CRAN</a></li>
+<li><strong>RStudio</strong>: Download from <a href="https://posit.co/download/rstudio-desktop/">RStudio</a></li>
+<li>Follow the installation instructions for your operating system (Windows, macOS, Linux)
+<ul>
+<li>As a basic rule, accept all the default options during installation. If asked to choose a version of R, select the latest one.</li>
+</ul></li>
+</ul>
+<h3 id="alternative">Alternative</h3>
+<ul>
+<li>Use <a href="https://posit.cloud/">Posit Cloud</a> for a web-based version (no installation needed, only free registration via email)</li>
 </ul>
 </section>
-<section id="what-is-r-markdown" class="slide level2 center" data-background-color="#40666e">
-<h2>What is R Markdown?</h2>
-<p>R Markdown is a tool that combines text, code, and output in a single document. It allows you to create dynamic, reproducible content such as:</p>
+<section id="what-is-r-what-is-rstudio" class="slide level2 center" data-background-color="#40666e">
+<h2>What is R? What is RStudio?</h2>
+<ul>
+<li><strong>R</strong> is a programming language for data analysis and visualization.</li>
+<li><strong>RStudio</strong> is an <em>IDE</em> — Integrated Development Environment — for using R more easily.</li>
+</ul>
+<blockquote>
+<p>Think of R as the engine, and RStudio as the dashboard.</p>
+</blockquote>
+</section>
+<section id="rstudio-the-interface" class="slide level2">
+<h2>RStudio: The Interface</h2>
+
+<img data-src="pics/RStudio_interface.png" class="quarto-figure quarto-figure-center r-stretch"><table class="caption-top">
+<tbody>
+<tr class="odd">
+<td>Console</td>
+<td>Run code, see results</td>
+<td><code>2 + 2</code></td>
+</tr>
+<tr class="even">
+<td>Script Editor</td>
+<td>Write reusable code</td>
+<td>Save as <code>.R</code> or <code>.Rmd</code></td>
+</tr>
+<tr class="odd">
+<td>Environment / History</td>
+<td>View data &amp; past code</td>
+<td><code>x &lt;- c(1,2,3)</code></td>
+</tr>
+<tr class="even">
+<td>Files / Plots / Help</td>
+<td>Navigate, install, get help</td>
+<td><code>plot(1:10)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="create-your-first-r-markdown-project" class="slide level2 scrollable">
+<h2>Create your first R Markdown Project</h2>
+<ol type="1">
+<li>In RStudio, go to <strong>File → New Project</strong>.</li>
+<li>Choose <strong>New Directory</strong>
+<ul>
+<li>Select <strong>New Project</strong>.</li>
+<li>Choose a location on your computer (e.g., Desktop, Documents).</li>
+</ul></li>
+<li>Name your project (e.g., <code>My_project</code>).</li>
+<li>Click <strong>Create Project</strong>.</li>
+</ol>
+<blockquote>
+<p>no you should see the project name in the top-right corner of RStudio, and a new folder created on your computer. You can now start working on your project! Every file you create in this project will be saved in this folder, making it easier to manage your work.</p>
+</blockquote>
+</section>
+<section id="install-and-load-a-package" class="slide level2">
+<h2>Install and Load a Package</h2>
+<p>Try installing a few packages we will need (you will need an internet connection):</p>
+<ul>
+<li>one way to do this is to click on the <strong>Packages</strong> tab in the bottom-right pane, then click <strong>Install</strong> and type the package names</li>
+<li>alternatively, you can use the <strong>Console</strong> to install packages using the <code>install.packages()</code> function, like this (without the backticks):</li>
+</ul>
+<pre><code>install.packages("knitr")
+install.packages("tidyverse")
+install.packages("tidytext")
+install.packages("devtools")
+install.packages("bookdown")</code></pre>
+<p>and then load them using the <code>library()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href=""></a><span class="fu">library</span>(tidytext)</span>
+<span id="cb2-4"><a href=""></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-5"><a href=""></a><span class="fu">library</span>(bookdown)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="try-this-console" class="slide level2">
+<h2>Try This: Console</h2>
+<p>Ok, let’s try some basic R code in the <strong>Console</strong> (the bottom-left pane of RStudio). Type the following in the <strong>Console</strong> and press <strong>Enter</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">sqrt</span>(<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+</div>
+<!-- You should see the results immediately in the Console. -->
+<!-- This is how you can run simple calculations and see the output directly. However, this is not the best way to write and save your code, as it will be lost when you close RStudio. -->
+</section>
+<section id="try-this-script-editor" class="slide level2">
+<h2>Try This: Script Editor</h2>
+<p>Open a new R Script (File → New File → R Script) and try writing this (be careful to include the comments and hash symbols <code>#</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="do">## This is a comment</span></span>
+<span id="cb9-2"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb9-3"><a href=""></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<ul>
+<li>Click <strong>Run</strong> to execute the line</li>
+<li>Notice how the result appears in the Console</li>
+<li>Save your script as <code>my_first_script.R</code></li>
+</ul>
+<!-- R scrpts are the most common and 'lightweight' way to write R code. They are plain text files with the `.R` extension, and they allow you to write, save, and run R code easily. -->
+</section>
+<section id="bonus-view-a-plot" class="slide level2">
+<h2>Bonus: View a Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Let's create a simple plot</span></span>
+<span id="cb11-2"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">50</span>)  <span class="co"># Generate a random sample of 50 numbers from 1 to 100</span></span>
+<span id="cb11-3"><a href=""></a><span class="fu">plot</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Or we can make a quick plot of the frequency of words in a text file using the <code>tidytext</code> package. The text is saved in a file called <code>austen_pride_1813.txt</code> in the <code>data</code> folder of your project.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Let's load a sample text and print the most frequent words</span></span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a>pride <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">"../data/austen_pride_1813.txt"</span>, <span class="co"># this reads the file from the url of the chosen file</span></span>
+<span id="cb12-4"><a href=""></a>                    <span class="at">fileEncoding =</span> <span class="st">"utf-8"</span>,  <span class="co"># we want to read it as unicode text</span></span>
+<span id="cb12-5"><a href=""></a>                    <span class="at">header =</span> F) <span class="sc">%&gt;%</span> <span class="co"># we do not want the first line as a header</span></span>
+<span id="cb12-6"><a href=""></a>  <span class="fu">rename</span>(<span class="at">text =</span> V1) <span class="co"># we can name the column text</span></span>
+<span id="cb12-7"><a href=""></a></span>
+<span id="cb12-8"><a href=""></a>pride <span class="sc">%&gt;%</span> <span class="co"># take the pride data frame</span></span>
+<span id="cb12-9"><a href=""></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="co"># ungroup the data frame</span></span>
+<span id="cb12-10"><a href=""></a>  <span class="fu">unnest_tokens</span>(word, text) <span class="sc">%&gt;%</span> <span class="co"># split the text into words</span></span>
+<span id="cb12-11"><a href=""></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">%&gt;%</span> <span class="co"># remove common stop words</span></span>
+<span id="cb12-12"><a href=""></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># count the frequency of each word</span></span>
+<span id="cb12-13"><a href=""></a>  <span class="fu">top_n</span>(<span class="dv">20</span>) <span class="sc">%&gt;%</span> <span class="co"># get the top 10 most frequent words</span></span>
+<span id="cb12-14"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(word, n), <span class="at">y =</span> n)) <span class="sc">+</span> <span class="co"># create a bar plot</span></span>
+<span id="cb12-15"><a href=""></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#40666e"</span>) <span class="sc">+</span> <span class="co"># use columns to represent the frequency</span></span>
+<span id="cb12-16"><a href=""></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="co"># flip the coordinates to make it horizontal</span></span>
+<span id="cb12-17"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Most Frequent Words in Pride and Prejudice"</span>,</span>
+<span id="cb12-18"><a href=""></a>       <span class="at">x =</span> <span class="st">"Words"</span>,</span>
+<span id="cb12-19"><a href=""></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="co"># add labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="save-your-work" class="slide level2">
+<h2>Save Your Work</h2>
+<p>To save your work, you can: 1. Save your <code>.R</code> script to a folder on your computer. 2. Use File → Save or <code>Cmd/Ctrl + S</code> 3. You’ll be working inside a <strong>Project</strong> soon — easier to manage!</p>
+</section>
+<section id="next-up-r-markdown" class="slide level2">
+<h2>Next Up: R Markdown</h2>
+<p>We’ll now move into <strong>R Markdown</strong>, where you can combine narrative, code, and output in a single document — perfect for research and teaching.</p>
+<p>Let’s get started!</p>
+</section>
+<section>
+<section id="what-is-r-markdown" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>What is R Markdown?</h1>
+<p>R Markdown is a tool that <strong>combines text, code, and output</strong> in a single document. It allows you to create <strong>dynamic, reproducible content</strong> such as:</p>
 <ul>
 <li>Lecture notes</li>
 <li>Research reports</li>
@@ -252,9 +440,9 @@ Dr Giulia Grisot
 <li>Articles and dissertations</li>
 <li>Books</li>
 </ul>
-</section></section>
-<section id="why-use-r-markdown" class="title-slide slide level1 center">
-<h1>Why use R Markdown?</h1>
+</section>
+<section id="why-use-r-markdown" class="slide level2">
+<h2>Why use R Markdown?</h2>
 <blockquote>
 <p>Write once, reuse often / automatically update content when data changes / <strong>no more copying-pasting</strong></p>
 </blockquote>
@@ -267,21 +455,18 @@ Dr Giulia Grisot
 <li><strong>Citations</strong>: manage references with ease</li>
 </ul>
 </section>
-
-<section id="typical-r-markdown-workflow" class="title-slide slide level1 center scrollable">
-<h1>Typical R Markdown workflow</h1>
+<section id="typical-r-markdown-workflow" class="slide level2 scrollable">
+<h2>Typical R Markdown workflow</h2>
 <ol type="1">
-<li>Create a new R Markdown document in RStudio</li>
-<li>Write your content using Markdown formatting</li>
-<li>Insert R code chunks to run analysis</li>
-<li>Knit the document to produce HTML, PDF, or Word outputs</li>
+<li><strong>Create</strong> a new R Markdown document in RStudio</li>
+<li><strong>Write</strong> your content using Markdown formatting</li>
+<li>(optional if you work with quantitative data) Insert R code chunks to run analysis</li>
+<li><strong>Knit</strong> the document to produce HTML, PDF, or Word outputs</li>
 <li>Update your content easily and efficiently</li>
 </ol>
 </section>
-
-<section>
-<section id="r-markdown-output-formats" class="title-slide slide level1 center">
-<h1>R Markdown output formats</h1>
+<section id="r-markdown-output-formats" class="slide level2">
+<h2>R Markdown output formats</h2>
 <p>R Markdown can generate various output formats, including:</p>
 <ul>
 <li>HTML reports</li>
@@ -293,15 +478,26 @@ Dr Giulia Grisot
 <li>Websites (with blogdown)</li>
 </ul>
 </section>
+<section id="the-yaml" class="slide level2">
+<h2>The YAML</h2>
+<p>The YAML header is a key part of R Markdown documents. It contains metadata about the document, such as the title, author, date, and output format. It is written in YAML syntax at the top of the document, enclosed by <code>---</code> lines.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My R Markdown Document"</span></span>
+<span id="cb13-2"><a href=""></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb13-3"><a href=""></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2025-05-26"</span></span>
+<span id="cb13-4"><a href=""></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb13-5"><a href=""></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb13-6"><a href=""></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb13-7"><a href=""></a><span class="at">  </span><span class="fu">word_document</span><span class="kw">:</span><span class="at"> default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="markdown-syntax" class="slide level2">
 <h2>Markdown syntax</h2>
 <h3 id="headings">Headings</h3>
 <p>Use <code>#</code> for top-level headings, <code>##</code> for second-level headings, and so on.</p>
 <h3 id="text-formatting">Text formatting</h3>
 <ul>
-<li>Use <code>*</code> or <code>_</code> for <em>italic</em> text</li>
-<li>Use <code>**</code> or <code>__</code> for <strong>bold</strong> text</li>
-<li>Use <code>~~</code> for <del>strikethrough</del> text</li>
+<li>Use <code>*text*</code> or <code>_text_</code> for <em>italic</em> text</li>
+<li>Use <code>**text**</code> or <code>__text__</code> for <strong>bold</strong> text</li>
+<li>Use <code>~~text~~</code> for <del>strikethrough</del> text</li>
 <li>Use <code>&gt;</code> for blockquotes</li>
 <li>Use <code>-</code> or <code>*</code> for bullet lists</li>
 <li>Use <code>1.</code> for numbered lists</li>
@@ -309,85 +505,101 @@ Dr Giulia Grisot
 <li>Use <code>![alt text](image URL)</code> for images</li>
 </ul>
 </section>
-<section id="basic-markdown-syntax" class="slide level2">
-<h2>Basic Markdown Syntax</h2>
-<p><em>italic</em> or <strong>bold</strong></p>
-<p>Lists, links, images</p>
-<p>Inline code: 4</p>
-<h3 id="code-chunks">Code chunks:</h3>
+<section id="code-chunks" class="slide level2">
+<h2>Code chunks:</h2>
+<p>R Markdown allows you to include R code chunks that can be executed to produce results directly in your document. Code chunks are enclosed in triple backticks with <code>{r}</code> at the beginning.</p>
+<p><img data-src="pics/code_chunk.png"></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb1-2"><a href=""></a></span>
-<span id="cb1-3"><a href=""></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="do">## Example R code chunk</span></span>
+<span id="cb14-2"><a href=""></a></span>
+<span id="cb14-3"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)  <span class="do">## Generate random numbers</span></span>
+<span id="cb14-4"><a href=""></a><span class="fu">hist</span>(x)  <span class="do">## Create a histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
 </div>
 </div>
-</section></section>
-<section id="r-code-chunks" class="title-slide slide level1 center">
-<h1>R Code Chunks</h1>
-<p>R code chunks are embedded in your R Markdown document to run analyses and generate outputs.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Example R code chunk</span></span>
-<span id="cb3-2"><a href=""></a></span>
-<span id="cb3-3"><a href=""></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)  <span class="co"># Generate random numbers</span></span>
-<span id="cb3-4"><a href=""></a><span class="fu">hist</span>(x)  <span class="co"># Create a histogram</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
 </div>
-<img data-src="slides_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-
-<section id="dynamic-content" class="title-slide slide level1 center">
-<h1>Dynamic Content</h1>
+</section>
+<section id="dynamic-content" class="slide level2">
+<h2>Dynamic Content</h2>
 <p>R Markdown allows you to create dynamic content that updates automatically when you change your data or code. For example, you can include the current date:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">Sys.Date</span>()  <span class="co"># Current date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="do">## Current date (standard R formatting)</span></span>
+<span id="cb15-2"><a href=""></a><span class="fu">Sys.Date</span>()  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-05-25"</code></pre>
+<pre><code>[1] "2025-05-26"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="do">## Current time in order "DD Month YYYY"</span></span>
+<span id="cb17-2"><a href=""></a><span class="fu">format</span>(<span class="fu">Sys.Date</span>(), <span class="st">"%d %B %Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "26 May 2025"</code></pre>
 </div>
 </div>
 </section>
-
-<section>
-<section id="citations-and-references" class="title-slide slide level1 center">
-<h1>Citations and References</h1>
-<p>R Markdown supports citation management through bibliographic files (e.g., .bib files).</p>
-<p>You can use citation keys to reference works in your text and automatically generate a bibliography at the end of your document.</p>
-</section>
-<section id="citation-management-with-r-markdown" class="slide level2">
-<h2>Citation management with R Markdown</h2>
-<p>You can manage citations in R Markdown using a .bib file. This allows you to:</p>
+<section id="citations-and-references" class="slide level2">
+<h2>Citations and References</h2>
+<p>R Markdown <strong>supports citation management</strong> through bibliographic files (e.g., .bib files). This allows you to:</p>
 <ul>
 <li>Cite works in your text using keys</li>
 <li>Automatically generate a bibliography at the end of your document</li>
 </ul>
-<p>The simplest way to cite a work is to use the <code>@citationkey</code> syntax, where <code>citationkey</code> is the key you assigned to the work in your .bib file. Tools like Zotero or Mendeley can help you manage your bibliography and export it as a .bib file.</p>
-<p><img data-src="https://forum.zettelkasten.de/uploads/editor/5y/oxzm831fbwsr.png" alt="Zotero interface"> Use <code>@citationkey</code> inline, and remember to add the link to your .bib file in the YAML header of your R Markdown document, like this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href=""></a></span>
-<span id="cb6-2"><a href=""></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> </span><span class="st">"path/to/your/bibliography.bib"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section id="example-citation" class="title-slide slide level1 center">
-<h1>Example citation</h1>
-<p>Note that at the top of this document, in the YAML there is <code>bibliography: "library.bib"</code>. This points to my library file, which contains all the references I want to cite in this document.</p>
-<p>For example, I can cite Moretti’s work in various ways according to the context: - this is the basic citation syntax: <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005</a>)</span> - also true for multiple works: <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005</a>)</span>; <span class="citation" data-cites="Grisot2023">Grisot and Herrmann (<a href="#/resources-references" role="doc-biblioref" onclick="">2023</a>)</span> - with page number: <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005, 123</a>)</span> - with page range: <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005, 123–25</a>)</span>. - in parentheses: <span class="citation" data-cites="Moretti2005">(<a href="#/resources-references" role="doc-biblioref" onclick="">Moretti 2005</a>)</span> - multiple works in parenthesis: <span class="citation" data-cites="Moretti2005 Grisot2023">(<a href="#/resources-references" role="doc-biblioref" onclick="">Moretti 2005</a>; <a href="#/resources-references" role="doc-biblioref" onclick="">Grisot and Herrmann 2023</a>)</span> - work without the author name: <span class="citation" data-cites="Grisot2023">(<a href="#/resources-references" role="doc-biblioref" onclick="">2023</a>)</span> or <span class="citation" data-cites="Grisot2023">(<a href="#/resources-references" role="doc-biblioref" onclick="">2023</a>)</span></p>
+<p>The simplest way to cite a work is to use the <code>@citationkey</code> syntax, where <code>citationkey</code> is the key you assigned to the work in your .bib file. Tools like <strong>Zotero or Mendeley</strong> can help you manage your bibliography and export it as a .bib file.</p>
 </section>
+<section id="using-zotero-for-citations" class="slide level2">
+<h2>Using Zotero for Citations</h2>
 
-<section>
-<section id="templates-for-teaching" class="title-slide slide level1 center">
-<h1>Templates for Teaching</h1>
-<p>When it comes to teaching, R Markdown can help you create: - Assignment briefs - Lecture notes - Feedback reports - Dynamic syllabi</p>
-<p>And essentially help you save a lot of time when preparing teaching materials.</p>
+<img data-src="pics/zotero.png" class="center r-stretch" width="600"><h3 id="better-bibtex-for-zotero">Better BibTex for Zotero</h3>
+<p>Better BibTeX is a Zotero plugin that allows you to manage your Zotero references as a .bib file. <a href="https://retorque.re/zotero-better-bibtex/">See Better BibTeX webpage for instructions</a></p>
 </section>
-<section id="challenges-and-tips" class="slide level2">
-<h2>Challenges and Tips</h2>
+<section id="using-citations-in-r-markdown" class="slide level2">
+<h2>using citations in R Markdown</h2>
+<p>Use <code>@citationkey</code> inline, and remember to add the link to your .bib file in the YAML header of your R Markdown document, like this:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href=""></a></span>
+<span id="cb19-2"><a href=""></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> </span><span class="st">"path/to/your/bibliography.bib"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="example-citation" class="slide level2">
+<h2>Example citation</h2>
+<p>Note that at the top of this document, in the YAML there is <code>bibliography: "library.bib"</code>. This points to my library file, which contains all the references I want to cite in this document.</p>
+<p><small></small></p><small>
+<ul>
+<li>this is the basic citation syntax: <code>@Moretti2005</code> = <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005</a>)</span></li>
+<li>also true for multiple works: <code>@Moretti2005; @Grisot2023</code> = <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005</a>)</span>; <span class="citation" data-cites="Grisot2023">Grisot and Herrmann (<a href="#/resources-references" role="doc-biblioref" onclick="">2023</a>)</span></li>
+<li>with page number: <code>@Moretti2005[p. 123]</code> = <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005, 123</a>)</span></li>
+<li>with page range: <code>@Moretti2005[p. 123-125]</code> = <span class="citation" data-cites="Moretti2005">Moretti (<a href="#/resources-references" role="doc-biblioref" onclick="">2005, 123–25</a>)</span></li>
+<li>in parentheses: <code>[@Moretti2005]</code> = <span class="citation" data-cites="Moretti2005">(<a href="#/resources-references" role="doc-biblioref" onclick="">Moretti 2005</a>)</span></li>
+<li>multiple works in parenthesis: <code>[@Moretti2005; @Grisot2023]</code> = <span class="citation" data-cites="Moretti2005 Grisot2023">(<a href="#/resources-references" role="doc-biblioref" onclick="">Moretti 2005</a>; <a href="#/resources-references" role="doc-biblioref" onclick="">Grisot and Herrmann 2023</a>)</span></li>
+<li>work without the author name: <code>-@Grisot2023 or [-@Grisot2023]</code>= <span class="citation" data-cites="Grisot2023">(<a href="#/resources-references" role="doc-biblioref" onclick="">2023</a>)</span> or <span class="citation" data-cites="Grisot2023">(<a href="#/resources-references" role="doc-biblioref" onclick="">2023</a>)</span></li>
+</ul>
+</small><p><small></small></p>
+</section>
+<section id="reference-style" class="slide level2">
+<h2>Reference style</h2>
+<p>You can choose the reference style in the YAML header of your R Markdown document. For example, to use MLS style, you can:</p>
+<ul>
+<li>download the <code>modern-language-association.csl</code> from the Zotero Style Repository or any other repository of citation styles</li>
+<li>save it in your project folder</li>
+<li>and specify it in the YAML header like this:</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href=""></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> modern-language-association.csl</span></span>
+<span id="cb20-2"><a href=""></a><span class="at">    </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="templates-for-teaching" class="slide level2">
+<h2>Templates for Teaching</h2>
+<p>When it comes to teaching, R Markdown can help you create: - Assignment briefs - Lecture notes - Feedback reports - Dynamic syllabi - Papers and articles - Presentations - Books</p>
+<p>And essentially help you <strong>save a lot of time</strong> when preparing teaching materials.</p>
+<h3 id="challenges-and-tips">Challenges and Tips</h3>
 <ul>
 <li><p>Formatting issues? <strong>Check YAML</strong> headers</p></li>
 <li><p>Long documents? Use <strong>bookdown</strong></p></li>
 <li><p>Collaboration? <strong>Use Git</strong> or shared RStudio Projects</p></li>
 <li><p>Reproducibility? Always <strong>set a working directory</strong>!</p></li>
 </ul>
-</section></section>
-<section id="resources-references" class="title-slide slide level1 smaller scrollable">
-<h1>Resources &amp; References</h1>
+</section>
+<section id="resources-references" class="slide level2 smaller scrollable">
+<h2>Resources &amp; References</h2>
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Grisot2023" class="csl-entry" role="listitem">
@@ -397,7 +609,7 @@ Grisot, Giulia, and J Berenike Herrmann. 2023. <span>“Is <span>Heidi</span> Re
 Moretti, Franco. 2005. <em><span>La letteratura vista da lontano</span></em>. Torino: Einaudi.
 </div>
 </div>
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

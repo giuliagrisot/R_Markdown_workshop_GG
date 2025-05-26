@@ -1,0 +1,47 @@
+---
+title: "Quarto Presentation Sample"
+author: "Your Name"
+date: today
+date-format: "D MMM YYYY"
+format: revealjs
+bibliography: "../slides/library.bib"
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Images
+
+You can include images in your presentation. For example, here is a logo from the Quarto project:
+
+![grumpy cat](https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Grumpy_Cat_%2814556024763%29_%28cropped%29.jpg/500px-Grumpy_Cat_%2814556024763%29_%28cropped%29.jpg)
+
+
+## Tables
+
+You can include tables in your presentation. For example, here is a simple table:
+
+
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+
+## References
+
+You can include references in your presentation. For example, this is a citation to an article [@Underwood2019], or we can pretend we are referring to another one inline without brackets, for example @Rundquist2016.
+
+## Code Output

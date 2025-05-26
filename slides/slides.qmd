@@ -18,24 +18,176 @@ bibliography: "library.bib"
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE
+  echo = T, # Show code in the output
+  message = F, # Suppress messages
+  warning = F # Suppress warnings
 )
 
 ```
 
 
+## Objectives
 
-# Today’s workshop - prerequisites
-- R and RStudio installed on your computer
-- Interest in integrating code and narrative
-- Willingness to explore reproducible workflows
+- Understand what **R** and **RStudio** are
+- Get familiar with the RStudio interface
+- Try some basic R code
+- Prepare to work with R Markdown
+- Understand the __benefits of using R Markdown__ for research and teaching
+- Learn how to make the most of R Markdown by __interacting with popular tools__ in the Humanities (e.g. Zotero)
+- Learn how to produce __dynamic, reproducible content__ with R Markdown
 
-## What is R Markdown? {background-color="#40666e" .center}
+> it might seem like a steep learning curve, but it will save you __a lot__ of time in the long run!
 
-R Markdown is a tool that combines text, code, and output in a single document. 
-It allows you to create dynamic, reproducible content such as:
+
+## Step 1: Installing R and R Studio
+
+- **R**: Download from [CRAN](https://cran.r-project.org/)
+- **RStudio**: Download from [RStudio](https://posit.co/download/rstudio-desktop/)
+- Follow the installation instructions for your operating system (Windows, macOS, Linux)
+  - As a basic rule, accept all the default options during installation. If asked to choose a version of R, select the latest one.
+
+### Alternative
+- Use [Posit Cloud](https://posit.cloud/) for a web-based version (no installation needed, only free registration via email)
+
+
+## What is R? What is RStudio? {background-color="#40666e" .center}
+
+- **R** is a programming language for data analysis and visualization.
+- **RStudio** is an *IDE* — Integrated Development Environment — for using R more easily.
+
+> Think of R as the engine, and RStudio as the dashboard.
+
+
+## RStudio: The Interface
+
+![](pics/RStudio_interface.png){fig-align="center"}
+
+|  |  |  |
+|------|---------|---------|
+| Console | Run code, see results | `2 + 2` |
+| Script Editor | Write reusable code | Save as `.R` or `.Rmd` |
+| Environment / History | View data & past code | `x <- c(1,2,3)` |
+| Files / Plots / Help | Navigate, install, get help | `plot(1:10)` |
+
+
+## Create your first R Markdown Project
+
+1. In RStudio, go to **File → New Project**.
+2. Choose **New Directory**
+   - Select **New Project**.
+   - Choose a location on your computer (e.g., Desktop, Documents).
+3. Name your project (e.g., `My_project`).
+4. Click **Create Project**.
+
+> no you should see the project name in the top-right corner of RStudio, and a new folder created on your computer. You can now start working on your project! Every file you create in this project will be saved in this folder, making it easier to manage your work.
+
+## Install and Load a Package
+
+Try installing a few packages we will need (you will need an internet connection):
+
+ - one way to do this is to click on the **Packages** tab in the bottom-right pane, then click **Install** and type the package names
+ - alternatively, you can use the **Console** to install packages using the `install.packages()` function, like this (without the backticks):
+ 
+```
+install.packages("knitr")
+install.packages("tidyverse")
+install.packages("tidytext")
+install.packages("devtools")
+install.packages("bookdown")
+```
+
+and then load them using the `library()` function:
+```{r}
+library(knitr)
+library(tidyverse)
+library(tidytext)
+library(devtools)
+library(bookdown)
+```
+
+## Try This: Console
+
+Ok, let's try some basic R code in the **Console** (the bottom-left pane of RStudio).
+Type the following in the **Console** and press **Enter**:
+
+```{r}
+2 + 2
+sqrt(25)
+mean(c(10, 20, 30))
+```
+
+<!-- You should see the results immediately in the Console. -->
+<!-- This is how you can run simple calculations and see the output directly. However, this is not the best way to write and save your code, as it will be lost when you close RStudio. -->
+
+## Try This: Script Editor
+
+Open a new R Script (File → New File → R Script) and try writing this (be careful to include the comments and hash symbols `#`):
+
+```{r}
+## This is a comment
+x <- c(1, 2, 3, 4, 5)
+mean(x)
+```
+
+- Click **Run** to execute the line
+- Notice how the result appears in the Console
+- Save your script as `my_first_script.R`
+
+<!-- R scrpts are the most common and 'lightweight' way to write R code. They are plain text files with the `.R` extension, and they allow you to write, save, and run R code easily. -->
+
+## Bonus: View a Plot
+
+```{r}
+
+# Let's create a simple plot
+x <- sample(1:100, 50)  # Generate a random sample of 50 numbers from 1 to 100
+plot(x)
+```
+
+Or we can make a quick plot of the frequency of words in a text file using the `tidytext` package.
+The text is saved in a file called `austen_pride_1813.txt` in the `data` folder of your project.
+
+```{r}
+# Let's load a sample text and print the most frequent words
+
+pride <- read.delim("../data/austen_pride_1813.txt", # this reads the file from the url of the chosen file
+                    fileEncoding = "utf-8",  # we want to read it as unicode text
+                    header = F) %>% # we do not want the first line as a header
+  rename(text = V1) # we can name the column text
+
+pride %>% # take the pride data frame
+  ungroup() %>% # ungroup the data frame
+  unnest_tokens(word, text) %>% # split the text into words
+  anti_join(stop_words) %>% # remove common stop words
+  count(word, sort = TRUE) %>% # count the frequency of each word
+  top_n(20) %>% # get the top 10 most frequent words
+  ggplot(aes(x = reorder(word, n), y = n)) + # create a bar plot
+  geom_col(fill = "#40666e") + # use columns to represent the frequency
+  coord_flip() + # flip the coordinates to make it horizontal
+  labs(title = "Most Frequent Words in Pride and Prejudice",
+       x = "Words",
+       y = "Frequency") # add labels
+```
+
+## Save Your Work
+
+To save your work, you can:
+1. Save your `.R` script to a folder on your computer.
+2. Use File → Save or `Cmd/Ctrl + S`
+3. You’ll be working inside a **Project** soon — easier to manage!
+
+
+## Next Up: R Markdown
+
+We’ll now move into **R Markdown**, where you can combine narrative, code, and output in a single document — perfect for research and teaching.
+
+Let’s get started!
+
+
+# What is R Markdown? {background-color="#40666e" .center}
+
+R Markdown is a tool that __combines text, code, and output__ in a single document. 
+It allows you to create __dynamic, reproducible content__ such as:
 
   - Lecture notes
   - Research reports
@@ -43,7 +195,7 @@ It allows you to create dynamic, reproducible content such as:
   - Articles and dissertations
   - Books
 
-# Why use R Markdown?
+## Why use R Markdown?
 
 > Write once, reuse often / automatically update content when data changes / __no more copying-pasting__
 
@@ -56,15 +208,15 @@ It allows you to create dynamic, reproducible content such as:
 
 
 
-# Typical R Markdown workflow
+## Typical R Markdown workflow
 
-1. Create a new R Markdown document in RStudio
-2. Write your content using Markdown formatting
-3. Insert R code chunks to run analysis
-4. Knit the document to produce HTML, PDF, or Word outputs
+1. __Create__ a new R Markdown document in RStudio
+2. __Write__ your content using Markdown formatting
+3. (optional if you work with quantitative data) Insert R code chunks to run analysis
+4. __Knit__ the document to produce HTML, PDF, or Word outputs
 5. Update your content easily and efficiently
 
-# R Markdown output formats
+## R Markdown output formats
 R Markdown can generate various output formats, including:
 
 - HTML reports
@@ -75,6 +227,20 @@ R Markdown can generate various output formats, including:
 - Books (with bookdown)
 - Websites (with blogdown)
 
+## The YAML
+
+The YAML header is a key part of R Markdown documents. It contains metadata about the document, such as the title, author, date, and output format. It is written in YAML syntax at the top of the document, enclosed by `---` lines.
+
+```yaml
+title: "My R Markdown Document"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+```
+
 
 ## Markdown syntax
 
@@ -82,9 +248,9 @@ R Markdown can generate various output formats, including:
 Use `#` for top-level headings, `##` for second-level headings, and so on.
 
 ### Text formatting
-- Use `*` or `_` for *italic* text
-- Use `**` or `__` for **bold** text
-- Use `~~` for ~~strikethrough~~ text
+- Use `*text*` or `_text_` for *italic* text
+- Use `**text**` or `__text__` for **bold** text
+- Use `~~text~~` for ~~strikethrough~~ text
 - Use `>` for blockquotes
 - Use `-` or `*` for bullet lists
 - Use `1.` for numbered lists
@@ -92,65 +258,58 @@ Use `#` for top-level headings, `##` for second-level headings, and so on.
 - Use `![alt text](image URL)` for images
 
 
-## Basic Markdown Syntax
+## Code chunks:
 
-*italic* or **bold**
+R Markdown allows you to include R code chunks that can be executed to produce results directly in your document. Code chunks are enclosed in triple backticks with `{r}` at the beginning.
 
-Lists, links, images
-
-Inline code: `r 2 + 2`
-
-### Code chunks:
-
+![](pics/code_chunk.png)
 ```{r}
 
-x <- 2 + 2
+## Example R code chunk
 
-print(x)
+x <- rnorm(100)  ## Generate random numbers
+hist(x)  ## Create a histogram
 
 ```
 
-# R Code Chunks
 
-R code chunks are embedded in your R Markdown document to run analyses and generate outputs.
-
-```{r}
-
-# Example R code chunk
-
-x <- rnorm(100)  # Generate random numbers
-hist(x)  # Create a histogram
-
-```
-
-# Dynamic Content
+## Dynamic Content
 
 R Markdown allows you to create dynamic content that updates automatically when you change your data or code.
 For example, you can include the current date:
 
 ```{r}
 
-Sys.Date()  # Current date
+## Current date (standard R formatting)
+Sys.Date()  
+
+## Current time in order "DD Month YYYY"
+format(Sys.Date(), "%d %B %Y")
 
 ```
 
 
-# Citations and References
+## Citations and References
 
-R Markdown supports citation management through bibliographic files (e.g., .bib files).
-
-You can use citation keys to reference works in your text and automatically generate a bibliography at the end of your document.
-
-## Citation management with R Markdown
-
-You can manage citations in R Markdown using a .bib file. This allows you to:
+R Markdown __supports citation management__ through bibliographic files (e.g., .bib files). This allows you to:
 
 - Cite works in your text using keys
 - Automatically generate a bibliography at the end of your document
 
-The simplest way to cite a work is to use the `@citationkey` syntax, where `citationkey` is the key you assigned to the work in your .bib file. Tools like Zotero or Mendeley can help you manage your bibliography and export it as a .bib file.
+The simplest way to cite a work is to use the `@citationkey` syntax, where `citationkey` is the key you assigned to the work in your .bib file. Tools like __Zotero or Mendeley__ can help you manage your bibliography and export it as a .bib file.
 
-![Zotero interface](https://forum.zettelkasten.de/uploads/editor/5y/oxzm831fbwsr.png)
+## Using Zotero for Citations
+
+![](pics/zotero.png){width=600 .center}
+
+
+### Better BibTex for Zotero
+
+Better BibTeX is a Zotero plugin that allows you to manage your Zotero references as a .bib file.
+[See Better BibTeX webpage for instructions](https://retorque.re/zotero-better-bibtex/)
+
+## using citations in R Markdown
+
 Use `@citationkey` inline, and remember to add the link to your .bib file in the YAML header of your R Markdown document, like this:
 
 ```yaml
@@ -159,32 +318,52 @@ bibliography: "path/to/your/bibliography.bib"
 
 ```
 
-# Example citation
+## Example citation
 
 Note that at the top of this document, in the YAML there is `bibliography: "library.bib"`. This points to my library file, which contains all the references I want to cite in this document.
 
-For example, I can cite Moretti's work in various ways according to the context:
-- this is the basic citation syntax: @Moretti2005
-- also true for multiple works: @Moretti2005; @Grisot2023
-- with page number: @Moretti2005[p. 123]
-- with page range: @Moretti2005[p. 123-125].
-- in parentheses: [@Moretti2005]
-- multiple works in parenthesis: [@Moretti2005; @Grisot2023]
-- work without the author name: -@Grisot2023 or [-@Grisot2023]
+<small>
+
+- this is the basic citation syntax: `@Moretti2005` = @Moretti2005
+- also true for multiple works: `@Moretti2005; @Grisot2023` = @Moretti2005; @Grisot2023
+- with page number: `@Moretti2005[p. 123]` = @Moretti2005[p. 123]
+- with page range: `@Moretti2005[p. 123-125]` = @Moretti2005[p. 123-125]
+- in parentheses: `[@Moretti2005]` = [@Moretti2005]
+- multiple works in parenthesis: `[@Moretti2005; @Grisot2023]` = [@Moretti2005; @Grisot2023]
+- work without the author name: `-@Grisot2023 or [-@Grisot2023]`= -@Grisot2023 or [-@Grisot2023]
+
+</small>
+
+## Reference style
+
+You can choose the reference style in the YAML header of your R Markdown document. For example, to use MLS style, you can:
+
+- download the `modern-language-association.csl` from the Zotero Style Repository or any other repository of citation styles
+- save it in your project folder
+- and specify it in the YAML header like this:
+
+```yaml
+csl: modern-language-association.csl
+    
+```
 
 
-# Templates for Teaching
+
+## Templates for Teaching
 
 When it comes to teaching, R Markdown can help you create:
  - Assignment briefs
  - Lecture notes
  - Feedback reports
  - Dynamic syllabi
+ - Papers and articles
+ - Presentations
+ - Books
  
-And essentially help you save a lot of time when preparing teaching materials.
+And essentially help you __save a lot of time__ when preparing teaching materials.
 
 
-## Challenges and Tips
+### Challenges and Tips
 
 - Formatting issues? __Check YAML__ headers
 
@@ -194,4 +373,4 @@ And essentially help you save a lot of time when preparing teaching materials.
 
 - Reproducibility? Always __set a working directory__!
 
-# Resources & References
+## Resources & References

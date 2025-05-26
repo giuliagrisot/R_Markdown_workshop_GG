@@ -1,0 +1,66 @@
+---
+title: "Pdf document template"
+output: 
+  bookdown::pdf_document2
+date: "`r Sys.Date()`"
+bibliography: "../slides/library.bib"
+---
+
+## Bookdown Pdf Document
+
+This is a simple example of a Bookdown document that can be rendered to a Pdf document format. You can include text, code chunks, and other elements as needed.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## Basic formatting
+
+You can use Markdown syntax to format your text. For example, you can create **bold text**, *italic text*, and `inline code`.
+
+You can also create lists:
+- Item 1 
+- Item 2
+  - Subitem 2.1
+  - Subitem 2.2
+  
+### Cross-referencing
+
+You can reference sections, figures, and tables. For example, see Figure \@ref(fig:example-figure) for an example figure.
+
+```{r example-figure, fig.cap="An example figure"}
+plot(cars)
+```
+
+If you want to reference a table, you can do so like this: Table \@ref(tab:example-table).
+
+```{r example-table, echo=FALSE}
+knitr::kable(head(mtcars), caption = "An example table")
+```
+
+You can also rerference a Figure that is not embedded inside a chunk, like this: Figure \@ref(fig:example-figure2).
+
+```{r example-figure2, echo=FALSE, fig.cap="Grumpy cat", fig.align='center'}
+
+knitr::include_graphics("../slides/pics/Grumpy_Cat.jpg", dpi = 300)
+
+```
+
+Or you can refer to a rmd table like this: Table \@ref(tab:table2).
+
+| **Category** | **Description** | **Subcategory (if any)** |
+|:---------|:----------------------|:-----------|
+| RURAL | **'rural entities'**: spatial terms relating to -- or characteristic of -- the countryside, in particular related to human settlements or infrastructures, as opposed to those of the city (for example *Wanderweg*: footpath, *Feld*: field, *Hütte*: hut, shack); |  |
+|  | **'natural entities'**: terms describing spatial elements as found in nature, not involving anything made or done by people (for example *Baum*: tree, *Bach*: brook, *Felsen*: rock); |  |
+|  | **'rural geolocations (geoloc_rur)'**: proper names of villages and small towns -- with less than 5000 inhabitants -- in Switzerland, Austria, Germany, France and Italy (for example *Zumdorf*, *Enggwil*, *Huttwil*) | village |
+|  | **'natural geolocations (geoloc_nat)'**: proper names of natural locations such as mountains, rivers, valley, lakes (for example *Matterhorn*, *Mont Blanc*, *Donau*), | forest, mountain, stream/lake , valley |
+
+Table: (\#tab:table2) Six spatial entities categories grouped under the umbrella terms RURAL and URBAN, and respective sub-categories.
+
+
+## References
+
+And finally, you can include references in your document. For example, @Woolf1927 for a sample citation, or [@Woolf1927; @Woolf1925] for multiple citations. You can also use the `@` syntax to refer to specific pages, like @Woolf1927[p. 123]. At the end of the document, you can include a bibliography section that will automatically format your references.
+
+
+## Bibliography
