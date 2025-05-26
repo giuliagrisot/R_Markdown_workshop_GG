@@ -1,0 +1,197 @@
+---
+title: R Markdown for the Humanities
+subtitle: A Practical Intro to Reproducible Writing
+format:
+  clean-revealjs:
+    scrollable: true
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Dr Giulia Grisot
+    email: giulia.grisot@manchester.ac.uk
+    affiliations: Lecturer in Digital Humanities, The University of Manchester
+date: May 28, 2025
+bibliography: "library.bib"
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+
+```
+
+
+
+# Today’s workshop - prerequisites
+- R and RStudio installed on your computer
+- Interest in integrating code and narrative
+- Willingness to explore reproducible workflows
+
+## What is R Markdown? {background-color="#40666e" .center}
+
+R Markdown is a tool that combines text, code, and output in a single document. 
+It allows you to create dynamic, reproducible content such as:
+
+  - Lecture notes
+  - Research reports
+  - Teaching materials
+  - Articles and dissertations
+  - Books
+
+# Why use R Markdown?
+
+> Write once, reuse often / automatically update content when data changes / __no more copying-pasting__
+
+- __Reproducibility__: combine code and results
+- __Transparency__: make your work verifiable
+- __Time-saving__: streamline your workflow for both research and teaching
+- __Flexibility__: create various output formats
+- __Collaboration__: share your work easily with others
+- __Citations__: manage references with ease
+
+
+
+# Typical R Markdown workflow
+
+1. Create a new R Markdown document in RStudio
+2. Write your content using Markdown formatting
+3. Insert R code chunks to run analysis
+4. Knit the document to produce HTML, PDF, or Word outputs
+5. Update your content easily and efficiently
+
+# R Markdown output formats
+R Markdown can generate various output formats, including:
+
+- HTML reports
+- PDF documents
+- Word files
+- PowerPoint slides
+- Reveal.js presentations
+- Books (with bookdown)
+- Websites (with blogdown)
+
+
+## Markdown syntax
+
+### Headings
+Use `#` for top-level headings, `##` for second-level headings, and so on.
+
+### Text formatting
+- Use `*` or `_` for *italic* text
+- Use `**` or `__` for **bold** text
+- Use `~~` for ~~strikethrough~~ text
+- Use `>` for blockquotes
+- Use `-` or `*` for bullet lists
+- Use `1.` for numbered lists
+- Use `[link text](URL)` for links
+- Use `![alt text](image URL)` for images
+
+
+## Basic Markdown Syntax
+
+*italic* or **bold**
+
+Lists, links, images
+
+Inline code: `r 2 + 2`
+
+### Code chunks:
+
+```{r}
+
+x <- 2 + 2
+
+print(x)
+
+```
+
+# R Code Chunks
+
+R code chunks are embedded in your R Markdown document to run analyses and generate outputs.
+
+```{r}
+
+# Example R code chunk
+
+x <- rnorm(100)  # Generate random numbers
+hist(x)  # Create a histogram
+
+```
+
+# Dynamic Content
+
+R Markdown allows you to create dynamic content that updates automatically when you change your data or code.
+For example, you can include the current date:
+
+```{r}
+
+Sys.Date()  # Current date
+
+```
+
+
+# Citations and References
+
+R Markdown supports citation management through bibliographic files (e.g., .bib files).
+
+You can use citation keys to reference works in your text and automatically generate a bibliography at the end of your document.
+
+## Citation management with R Markdown
+
+You can manage citations in R Markdown using a .bib file. This allows you to:
+
+- Cite works in your text using keys
+- Automatically generate a bibliography at the end of your document
+
+The simplest way to cite a work is to use the `@citationkey` syntax, where `citationkey` is the key you assigned to the work in your .bib file. Tools like Zotero or Mendeley can help you manage your bibliography and export it as a .bib file.
+
+![Zotero interface](https://forum.zettelkasten.de/uploads/editor/5y/oxzm831fbwsr.png)
+Use `@citationkey` inline, and remember to add the link to your .bib file in the YAML header of your R Markdown document, like this:
+
+```yaml
+
+bibliography: "path/to/your/bibliography.bib"
+
+```
+
+# Example citation
+
+Note that at the top of this document, in the YAML there is `bibliography: "library.bib"`. This points to my library file, which contains all the references I want to cite in this document.
+
+For example, I can cite Moretti's work in various ways according to the context:
+- this is the basic citation syntax: @Moretti2005
+- also true for multiple works: @Moretti2005; @Grisot2023
+- with page number: @Moretti2005[p. 123]
+- with page range: @Moretti2005[p. 123-125].
+- in parentheses: [@Moretti2005]
+- multiple works in parenthesis: [@Moretti2005; @Grisot2023]
+- work without the author name: -@Grisot2023 or [-@Grisot2023]
+
+
+# Templates for Teaching
+
+When it comes to teaching, R Markdown can help you create:
+ - Assignment briefs
+ - Lecture notes
+ - Feedback reports
+ - Dynamic syllabi
+ 
+And essentially help you save a lot of time when preparing teaching materials.
+
+
+## Challenges and Tips
+
+- Formatting issues? __Check YAML__ headers
+
+- Long documents? Use __bookdown__
+
+- Collaboration? __Use Git__ or shared RStudio Projects
+
+- Reproducibility? Always __set a working directory__!
+
+# Resources & References
