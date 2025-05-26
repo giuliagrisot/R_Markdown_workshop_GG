@@ -1,0 +1,48 @@
+---
+title: "Il ragazzo con il ramarro: A Study in Light, Youth, and Symbolism"
+author: "Dr Michelangelo Merisi"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+output:
+  bookdown::html_document2:
+    theme: readable
+    toc: false
+    number_sections: false
+bibliography: bibliography.bib
+link-citations: true
+csl: "chicago-note-bibliography.csl"
+---
+
+# Introduction
+
+Michelangelo Merisi da Caravaggio’s *Il ragazzo con il ramarro* (*Boy Bitten by a Lizard*, c. 1594) is a remarkable early work that already contains many hallmarks of the artist’s mature style: dramatic use of chiaroscuro, intimate naturalism, and psychologically charged themes. This paper offers a brief study of the painting’s compositional features, symbolic layers, and reception history.
+
+# Description and Composition
+
+The painting (see Figure \@ref(fig:figure1)) shows a young boy reacting with surprise and pain as a lizard bites his finger. The boy is presented in half-length, leaning slightly forward, his torso illuminated by a strong light source from the left. A vase of flowers and some fruits are placed on the table, further indicating Caravaggio’s interest in still-life realism [@langdon1998].
+
+```{r figure1, out.width='70%', fig.align='center', fig.cap="*Ragazzo morso da un ramarro* by Caravaggio", warning=FALSE, message=F, echo=F}
+
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Michelangelo_Caravaggio_061.jpg/960px-Michelangelo_Caravaggio_061.jpg")
+
+```
+
+The boy’s effeminate features and slightly erotic undertone have led some scholars to interpret the painting as an allegory of sensual temptation and its consequences [@puglisi1998].
+
+# Symbolism
+
+Fruit, flowers, and lizards are traditional vanitas symbols. The decaying fruit hints at the fleeting nature of youth and beauty [@hall1979]. The lizard, emerging unexpectedly, may represent hidden dangers or the sudden onset of passion. The sensory realism of the lizard bite creates a strong psychological immediacy.
+
+Scholars have also highlighted the homoerotic charge in the boy’s expression and pose [@harris2001], aligning the work with late sixteenth-century notions of ambiguous gender and desire.
+
+# Context and Reception
+
+Produced shortly after Caravaggio’s arrival in Rome, the painting formed part of a series of works exploring young male subjects in various guises. It reflects the influence of northern Caravaggisti and classical statuary, but also stands out for its shocking realism and psychological directness [@posner1971].
+
+The work was likely painted for Cardinal Francesco Maria Del Monte, a key patron, who appreciated both Caravaggio’s technical skill and his capacity to provoke with subtle eroticism and ambiguity [@friedlaender1955].
+
+# Conclusion
+
+*Il ragazzo con il ramarro* is more than an early genre painting. It is a multilayered allegory of youth, sensation, and the risks of sensuality. Its bold realism, complex symbolism, and psychological nuance mark it as a pivotal early work in Caravaggio’s oeuvre.
+
+# References
+
