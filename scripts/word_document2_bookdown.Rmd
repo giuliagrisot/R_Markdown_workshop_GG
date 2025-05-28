@@ -1,6 +1,8 @@
 ---
 title: "Bookdown Word Document"
-output: bookdown::word_document2
+output: # bookdown::word_document2
+  bookdown::word_document2:
+      reference_docx: my_style.docx
 author: "Your Name"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 fig_caption: yes
