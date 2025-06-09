@@ -20,8 +20,8 @@ bibliography: "library.bib"
 knitr::opts_chunk$set(
   echo = T, # Show code in the output
   message = F, # Suppress messages
-  warning = F # Suppress warnings
-)
+  warning = F # Suppress warning
+  )
 
 ```
 
@@ -137,7 +137,7 @@ mean(x)
 
 ## Bonus: View a Plot
 
-```{r}
+```{r include=F}
 
 # Let's create a simple plot
 x <- sample(1:100, 50)  # Generate a random sample of 50 numbers from 1 to 100
@@ -374,3 +374,4 @@ And essentially help you __save a lot of time__ when preparing teaching material
 - Reproducibility? Always __set a working directory__!
 
 ## Resources & References
+

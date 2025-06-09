@@ -4,12 +4,12 @@ author: "Dr Michelangelo Merisi"
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 output:
   bookdown::html_document2:
-    theme: readable
+    theme: lumen
     toc: false
     number_sections: false
 bibliography: bibliography.bib
 link-citations: true
-csl: "chicago-note-bibliography.csl"
+# csl: "chicago-note-bibliography.csl"
 ---
 
 # Introduction
@@ -18,9 +18,13 @@ Michelangelo Merisi da Caravaggio’s *Il ragazzo con il ramarro* (*Boy Bitten b
 
 # Description and Composition
 
-The painting (see Figure \@ref(fig:figure1)) shows a young boy reacting with surprise and pain as a lizard bites his finger. The boy is presented in half-length, leaning slightly forward, his torso illuminated by a strong light source from the left. A vase of flowers and some fruits are placed on the table, further indicating Caravaggio’s interest in still-life realism [@langdon1998].
+The painting (see Figure \@ref(fig:ragazzo)) shows a young boy reacting with surprise and pain as a lizard bites his finger. The boy is presented in half-length, leaning slightly forward, his torso illuminated by a strong light source from the left. A vase of flowers and some fruits are placed on the table, further indicating Caravaggio’s interest in still-life realism [@langdon1998].
 
-```{r figure1, out.width='70%', fig.align='center', fig.cap="*Ragazzo morso da un ramarro* by Caravaggio", warning=FALSE, message=F, echo=F}
+
+
+
+
+```{r ragazzo, out.width='70%', fig.align='center', fig.cap="*Ragazzo morso da un ramarro* by Caravaggio", warning=FALSE, message=F, echo=F}
 
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Michelangelo_Caravaggio_061.jpg/960px-Michelangelo_Caravaggio_061.jpg")
 
